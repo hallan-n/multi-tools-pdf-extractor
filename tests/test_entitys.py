@@ -1,4 +1,4 @@
-from app.entity.ticket import Ticket
+from app.entity.ticket_model import Ticket
 from pytest import mark
 from faker import Faker
 
@@ -7,7 +7,7 @@ fake = Faker()
 
 @mark.ticket
 def test_ticket_id():
-    assert Ticket(id=fake.random_number(digits=5))
+    assert Ticket(id_ticket=fake.random_number(digits=5))
 
 
 @mark.ticket
