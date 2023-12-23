@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String
-from app.entity.base import Base
+from app.entities.base import Base
 
 
 class TicketSQL(Base):
