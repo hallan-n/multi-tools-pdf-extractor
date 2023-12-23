@@ -11,10 +11,10 @@ def test_ticket_id():
 
 
 @mark.ticket
-def test_ticket_author():
-    assert Ticket(author=fake.random_number(digits=5))
+def test_ticket_link():
+    assert Ticket(link=fake.url())
 
 
 @mark.ticket
 def test_ticket_description():
-    assert Ticket(description=fake.paragraphs(nb=1)[0])
+    assert Ticket(description=fake.paragraphs(nb=2)[0])
