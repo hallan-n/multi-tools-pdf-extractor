@@ -17,7 +17,7 @@ class Ticket(BaseModel):
     @validator("link")
     def validate_link(cls, value):
         url = re.compile("^(https):\/\/[^\s/$.?#].[^\s]*$")
-        if not url.match(value) and not len(value) > 255:
+        if not url.match(value):
             raise ValueError("URL no formato inválido!")
         return True
 
