@@ -6,6 +6,7 @@ class Ticket(BaseModel):
     id: int = None
     id_ticket: int = None
     link: str = None
+    group: str = None
     description: str = None
 
     @validator("id_ticket")
@@ -19,6 +20,12 @@ class Ticket(BaseModel):
         url = re.compile("^(http(s)?):\/\/[^\s/$.?#].[^\s]*$")
         if not url.match(value) and not len(value) > 255:
             raise ValueError("URL no formato inválido!")
+        return True
+
+    @validator("group")
+    def validate_id(cls, value):
+        if len(value) > 255:
+            raise ValueError("A descrição deve ter no máximo 255 caracteres")
         return True
 
     @validator("description")

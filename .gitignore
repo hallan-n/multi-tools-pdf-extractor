@@ -1,7 +1,3 @@
 venv
 __pycache__
-<<<<<<< HEAD
 .pytest_cache
-=======
-.pyteste_cache
->>>>>>> 3bf5b96a7291f689beb57842c40064f31ec565db
