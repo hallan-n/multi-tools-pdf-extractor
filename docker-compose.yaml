@@ -11,24 +11,26 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
+    depends_on:
+      - mysql
     volumes:
       - ./app:/app
     restart: always
     environment:
-      DB_URL: db_multi_tools_pdf_extractor
-      DB_USER: root
-      DB_PASSWORD: 123456
+      DB_DATABASE: db_multi_tools_pdf_extractor
+      DB_USER: hallan
+      DB_HOST: mysql
+      DB_PASSWORD: 12qwaszx
     networks:
       - my_network_api
 
   mysql:
     image: mysql:latest
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_DATABASE: db_multi_tools_pdf_extractor
-      MYSQL_USER: root
-      MYSQL_PASSWORD: 123456
+      MYSQL_USER: hallan
+      MYSQL_PASSWORD: 12qwaszx
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
