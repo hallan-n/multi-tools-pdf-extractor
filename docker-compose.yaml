@@ -1,0 +1,36 @@
+version: "3"
+
+volumes:
+  mysql_data:
+
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    restart: always
+    networks:
+      - my_network_api
+
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: db_multi_tools_pdf_extractor
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123456
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - my_network_api
+
+networks:
+  my_network_api:
+    driver: bridge
+      
