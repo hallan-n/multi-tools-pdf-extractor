@@ -1,4 +1,4 @@
-from entities.base import Base
+from app.entities.base import Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -8,12 +8,13 @@ class Database:
         self.engine = create_engine(db_url)
         self.Session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
 
-    def get_session(self, rollback: bool = False):
+    def get_session(self):
         session = self.Session()
         yield session
-        if rollback:
-            session.rollback()
         session.close()
+
+    def get_connection(self):
+        self.engine.connect()
 
     def create_tables(self):
         Base.metadata.create_all(bind=self.engine)

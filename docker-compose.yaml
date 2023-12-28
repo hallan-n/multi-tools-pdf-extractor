@@ -15,7 +15,7 @@ services:
     depends_on:
       - mysql
     volumes:
-      - ./app:/app
+      - ./:/app
     restart: always
     environment:
       DB_DATABASE: db_multi_tools_pdf_extractor

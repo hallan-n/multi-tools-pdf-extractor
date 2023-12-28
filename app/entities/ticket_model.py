@@ -23,13 +23,13 @@ class Ticket(BaseModel):
         return True
 
     @validator("group")
-    def validate_id(cls, value):
+    def validate_group(cls, value):
         if len(value) > 255:
             raise ValueError("A descrição deve ter no máximo 255 caracteres")
         return True
 
     @validator("description")
-    def validate_id(cls, value):
+    def validate_description(cls, value):
         if len(value) > 255:
             raise ValueError("A descrição deve ter no máximo 255 caracteres")
         return True
