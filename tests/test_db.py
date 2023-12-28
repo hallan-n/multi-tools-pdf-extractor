@@ -1,14 +1,10 @@
 from pytest import mark, fixture
 from app.db.database import Database
+from tests.conftest import db
 import os
 
 
-@fixture(scope="session")
-def db():
-    DB_URL = f'mysql+mysqlconnector://{os.environ.get("DB_USER")}:{os.environ.get("DB_PASSWORD")}@{os.environ.get("DB_HOST")}/{os.environ.get("DB_DATABASE")}'
-    return Database(DB_URL)
-
-
-@mark.skip(reason="Falta implementar")
+@mark.database
+@mark.skip(reason="Banco de dados rodando em docker")
 def test_connection_db(db):
-    assert db.get_connection()
+    assert db.is_connect()

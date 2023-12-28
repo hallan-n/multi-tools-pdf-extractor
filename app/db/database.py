@@ -13,8 +13,8 @@ class Database:
         yield session
         session.close()
 
-    def get_connection(self):
-        self.engine.connect()
+    def is_connect(self):
+        return not self.engine.connect()._is_disconnect
 
     def create_tables(self):
         Base.metadata.create_all(bind=self.engine)
