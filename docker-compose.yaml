@@ -2,6 +2,7 @@ version: "3"
 
 volumes:
   mysql_data:
+  app_data:
 
 
 services:
