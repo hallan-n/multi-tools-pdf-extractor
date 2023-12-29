@@ -1,7 +1,7 @@
 from app.entities.base import Base
-from app.entities.ticket_sql import TicketSQL
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker
+from app.entities.ticket_sql import TicketSQL
 import os
 
 
@@ -10,7 +10,10 @@ class Database:
 
     def __init__(self, db_url: str = _DB_URL) -> None:
         self.engine = create_engine(db_url, pool_size=5, max_overflow=10)
+        self.metadata = MetaData()
+        self.metadata.bind = self.engine
         self.Session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
+        self.create_tables()
 
     def get_session(self):
         return self.Session()
@@ -20,7 +23,9 @@ class Database:
 
     def create_tables(self):
         try:
-            Base.metadata.create_all(bind=self.engine)
-            return True
+            existing_tables = self.metadata.tables
+            if not existing_tables:
+                Base.metadata.create_all(bind=self.engine)
+                return True
         except Exception as e:
             raise e
