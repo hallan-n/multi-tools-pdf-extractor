@@ -1,10 +1,12 @@
-from pytest import mark, fixture
-from app.db.database import Database
+from pytest import mark
 from tests.conftest import db
-import os
 
 
 @mark.database
-@mark.skip(reason="Banco de dados rodando em docker")
 def test_connection_db(db):
-    assert db.is_connect()
+    assert db.is_connect() == True
+
+
+@mark.database
+def test_create_tables(db):
+    assert db.create_tables(rollback=True) == True
