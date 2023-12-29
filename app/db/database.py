@@ -18,12 +18,9 @@ class Database:
     def is_connect(self):
         return not self.engine.connect()._is_disconnect
 
-    def create_tables(self, rollback: bool = False):
+    def create_tables(self):
         try:
             Base.metadata.create_all(bind=self.engine)
-            if rollback:
-                Base.metadata.drop_all(bind=self.engine)
             return True
         except Exception as e:
-            print(f"Error creating tables: {e}")
-            return False
+            raise e
