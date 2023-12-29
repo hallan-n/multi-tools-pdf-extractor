@@ -13,23 +13,23 @@ class Ticket(BaseModel):
     def validate_id(cls, value):
         if not isinstance(value, int):
             raise ValueError("O ID deve receber um valor numérico inteiro!")
-        return True
+        return value
 
     @validator("link")
     def validate_link(cls, value):
         url = re.compile("^(http(s)?):\/\/[^\s/$.?#].[^\s]*$")
         if not url.match(value) and not len(value) > 255:
             raise ValueError("URL no formato inválido!")
-        return True
+        return value
 
     @validator("group")
     def validate_group(cls, value):
         if len(value) > 255:
             raise ValueError("A descrição deve ter no máximo 255 caracteres")
-        return True
+        return value
 
     @validator("description")
     def validate_description(cls, value):
         if len(value) > 255:
             raise ValueError("A descrição deve ter no máximo 255 caracteres")
-        return True
+        return value

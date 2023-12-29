@@ -1,6 +1,7 @@
 from pytest import fixture
 from faker import Faker
 from app.db.database import Database
+from app.use_cases.ticket_use_case import TicketUseCases
 import os
 
 
@@ -13,3 +14,8 @@ def db():
 @fixture
 def fake():
     return Faker()
+
+
+@fixture
+def ticket_use_cases():
+    return TicketUseCases()
