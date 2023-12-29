@@ -10,7 +10,7 @@ class Database:
         self.Session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
 
     def get_session(self):
-        return self.Session()
+        session = self.Session()
         yield session
         session.close()
 
