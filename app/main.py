@@ -9,8 +9,7 @@ app = FastAPI()
 @app.get("/")
 async def entry():
     try:
-        DB_URL = f'mysql+mysqlconnector://{os.environ.get("DB_USER")}:{os.environ.get("DB_PASSWORD")}@{os.environ.get("DB_HOST")}/{os.environ.get("DB_DATABASE")}'
-        db = Database(DB_URL)
+        db = Database()
         db.is_connect()
         return "Rodando"
     except:

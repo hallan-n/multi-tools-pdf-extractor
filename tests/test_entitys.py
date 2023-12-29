@@ -1,11 +1,6 @@
 from app.entities.ticket_model import Ticket
-from pytest import mark, fixture
-from faker import Faker
-
-
-@fixture
-def fake():
-    return Faker()
+from tests.conftest import fake
+from pytest import mark
 
 
 @mark.ticket_model

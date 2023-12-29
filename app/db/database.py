@@ -2,10 +2,13 @@ from app.entities.base import Base
 from app.entities.ticket_sql import TicketSQL
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+import os
 
 
 class Database:
-    def __init__(self, db_url: str) -> None:
+    _DB_URL = f'mysql+mysqlconnector://{os.environ.get("DB_USER")}:{os.environ.get("DB_PASSWORD")}@{os.environ.get("DB_HOST")}/{os.environ.get("DB_DATABASE")}'
+
+    def __init__(self, db_url: str = _DB_URL) -> None:
         self.engine = create_engine(db_url)
         self.Session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
 
