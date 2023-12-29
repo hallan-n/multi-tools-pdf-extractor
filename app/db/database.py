@@ -11,7 +11,6 @@ class Database:
     def __init__(self, db_url: str = _DB_URL) -> None:
         self.engine = create_engine(db_url, pool_size=5, max_overflow=10)
         self.metadata = MetaData()
-        self.metadata.bind = self.engine
         self.Session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
         self.create_tables()
 
@@ -23,8 +22,8 @@ class Database:
 
     def create_tables(self):
         try:
-            existing_tables = self.metadata.tables
-            if not existing_tables:
+            self.metadata.reflect(bind=self.engine)
+            if not self.metadata.tables:
                 Base.metadata.create_all(bind=self.engine)
                 return True
         except Exception as e:
