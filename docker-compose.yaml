@@ -1,22 +1,21 @@
-version: "3"
+version: "3.9"
 
 volumes:
   mysql_data:
-  app_data:
-
 
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
+    restart: always
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload", "--reload-dir", "app"]
     ports:
       - "8000:8000"
     depends_on:
       - mysql
     volumes:
       - ./:/app
-    restart: always
     environment:
       DB_DATABASE: db_multi_tools_pdf_extractor
       DB_USER: hallan
@@ -27,6 +26,7 @@ services:
 
   mysql:
     image: mysql:latest
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_DATABASE: db_multi_tools_pdf_extractor
