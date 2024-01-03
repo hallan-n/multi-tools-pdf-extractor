@@ -1,7 +1,7 @@
-from app.entities.base import Base
+from app.entities.schemas.base import Base
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker
-from app.entities.ticket_sql import TicketSQL
+from app.entities.models.ticket_model import TicketSQL
 import os
 
 

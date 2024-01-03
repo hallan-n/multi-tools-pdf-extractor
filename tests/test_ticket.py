@@ -1,6 +1,6 @@
 from pytest import mark
-from app.entities.ticket_model import Ticket
-from app.entities.ticket_sql import TicketSQL
+from app.entities.schemas.ticket_schema import Ticket
+from app.entities.models.ticket_model import TicketSQL
 from tests.conftest import ticket_use_cases
 
 

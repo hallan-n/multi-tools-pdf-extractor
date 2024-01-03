@@ -1,6 +1,6 @@
 from app.db.database import Database
-from app.entities.ticket_sql import TicketSQL
-from app.entities.ticket_model import Ticket
+from app.entities.models.ticket_model import TicketSQL
+from app.entities.schemas.ticket_schema import Ticket
 
 
 class TicketUseCases:
@@ -9,8 +9,8 @@ class TicketUseCases:
 
     def create_ticket(self, ticket: Ticket, rollback: bool = False):
         try:
-            ticket_sql = TicketSQL(**dict(ticket))
-            self.session.add(ticket_sql)
+            ticket_model = TicketSQL(**dict(ticket))
+            self.session.add(ticket_model)
             # Com finalidade de testes
             if rollback:
                 self.session.rollback()
