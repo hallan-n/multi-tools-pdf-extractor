@@ -2,13 +2,13 @@ from app.entities.schemas.base import Base
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker
 from app.entities.models.ticket_model import TicketSQL
-import os
+from os import environ
 
 
 class Database:
     def __init__(
         self,
-        db_url: str = f'mysql+mysqlconnector://{os.environ.get("DB_USER")}:{os.environ.get("DB_PASSWORD")}@{os.environ.get("DB_HOST")}/{os.environ.get("DB_DATABASE")}',
+        db_url: str = f'mysql+mysqlconnector://{environ.get("DB_USER")}:{environ.get("DB_PASSWORD")}@{environ.get("DB_HOST")}/{environ.get("DB_DATABASE")}',
     ) -> None:
         self.engine = create_engine(db_url, pool_size=5, max_overflow=10)
         self.metadata = MetaData()

@@ -1,5 +1,4 @@
 from pytest import mark
-from tests.conftest import db
 
 
 @mark.skip(reason="Banco rodando em docker")
