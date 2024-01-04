@@ -1,4 +1,5 @@
 from pydantic import BaseModel, validator
+from datetime import date
 import re
 
 
@@ -8,6 +9,7 @@ class Ticket(BaseModel):
     link: str = None
     group: str = None
     description: str = None
+    create_at: date = None
 
     @validator("id_ticket")
     def validate_id(cls, value):

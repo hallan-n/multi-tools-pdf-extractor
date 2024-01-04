@@ -1,9 +1,8 @@
 from pytest import mark
 from app.entities.schemas.ticket_schema import Ticket
-from app.entities.models.ticket_model import TicketSQL
-from tests.conftest import ticket_use_cases
 
 
+@mark.skip(reason="Banco rodando em docker")
 def test_create_ticket(ticket_use_cases):
     assert (
         ticket_use_cases.create_ticket(
@@ -12,6 +11,7 @@ def test_create_ticket(ticket_use_cases):
                 link="https://www.teste.com.br",
                 group="teste",
                 description="texto teste",
+                create_at="2000-10-10",
             ),
             rollback=True,
         )
@@ -19,5 +19,6 @@ def test_create_ticket(ticket_use_cases):
     )
 
 
+@mark.skip(reason="Banco rodando em docker")
 def test_select_tickets(ticket_use_cases):
     assert ticket_use_cases.select_tickets(page=1, page_size=1, tests=True) == True

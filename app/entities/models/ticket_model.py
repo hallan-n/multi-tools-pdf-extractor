@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, DateTime
 from app.entities.schemas.base import Base
+from datetime import datetime
 
 
 class TicketSQL(Base):
@@ -10,3 +11,4 @@ class TicketSQL(Base):
     link = Column(String(255), nullable=False, unique=True)
     group = Column(String(255), nullable=True)
     description = Column(String(255), nullable=True)
+    create_at = Column(DateTime, default=datetime.now())
