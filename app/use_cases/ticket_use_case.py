@@ -4,8 +4,8 @@ from app.entities.schemas.ticket_schema import Ticket
 
 
 class TicketUseCases:
-    def __init__(self) -> None:
-        self.session = Database().get_session()
+    def __init__(self, session: Database) -> None:
+        self.session = session.get_session()
 
     def create_ticket(self, ticket: Ticket, rollback: bool = False):
         try:

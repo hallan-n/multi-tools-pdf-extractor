@@ -8,5 +8,5 @@ class TicketRouter(APIRouter):
 
     def setup_router(self):
         @self.get("/tickets")
-        def create_ticket():
+        def select_ticket():
             return {"mensagem": "Criado"}
