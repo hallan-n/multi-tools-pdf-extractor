@@ -9,4 +9,4 @@ class Ticket(BaseModel):
     owner: str
     status: str
     comments: str
-    template: str
+    templates: list[str] | str
