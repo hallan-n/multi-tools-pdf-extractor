@@ -3,17 +3,17 @@ from abc import ABC, abstractmethod
 
 class Persistence(ABC):
     @abstractmethod
-    def create(self):
+    async def create(self):
         pass
 
     @abstractmethod
-    def read(self):
+    async def read(self):
         pass
 
     @abstractmethod
-    def update(self):
+    async def update(self):
         pass
 
     @abstractmethod
-    def delete(self):
+    async def delete(self):
         pass
