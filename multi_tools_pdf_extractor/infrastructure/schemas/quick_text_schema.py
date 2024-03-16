@@ -7,7 +7,7 @@ class QuickText(Base):
     __tablename__ = "quick_text"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    text = Column(String)
+    text = Column(String(200))
 
     group_id = Column(Integer, ForeignKey("group.id"))
     group = relationship("Group", back_populates="quick_texts")

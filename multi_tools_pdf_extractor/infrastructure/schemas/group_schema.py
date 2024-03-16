@@ -7,7 +7,7 @@ class Group(Base):
     __tablename__ = "group"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    group = Column(String)
+    group = Column(String(200))
 
     tickets = relationship("Ticket", back_populates="group_id")
     quick_texts = relationship("QuickText", back_populates="group_id")

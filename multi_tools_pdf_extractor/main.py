@@ -1,8 +1,14 @@
-from fastapi import FastAPI
+import asyncio
+from infrastructure.repositories.config.connection import Connection
+from dotenv import load_dotenv
 
-app = FastAPI()
+load_dotenv()
 
 
-@app.get("/")
-def home():
-    return {"status": "ok"}
+async def teste():
+    async with Connection() as conn:
+        ...
+
+
+loop = asyncio.get_event_loop()
+loop.run_until_complete(teste())
