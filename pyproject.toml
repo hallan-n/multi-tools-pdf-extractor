@@ -20,10 +20,6 @@ black = "^24.2.0"
 pytest = "^8.1.1"
 pre-commit = "^3.6.2"
 
-[tool.pre_commit]
-version = '2'
-default_stages = ['commit']
-default_hooks = ['black']
 
 [build-system]
 requires = ["poetry-core"]
