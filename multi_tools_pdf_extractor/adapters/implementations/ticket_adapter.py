@@ -6,12 +6,15 @@ from multi_tools_pdf_extractor.infrastructure.schemas.ticket_schema import (
 
 
 class TicketAdapter(DataParser):
-    def __init__(self, model: Model, schema: Schema) -> None:
-        self.model = model
-        self.schema = schema
+    def __init__(self, ticket: Model | Schema) -> None:
+        self.ticket = ticket
 
     def to_schema(self):
-        pass
+        try:
+            data = dict(self.ticket)
+            return Schema(**data)
+        except Exception as e:
+            raise e("Erro ao fazer cast")
 
     def to_model(self):
         pass
