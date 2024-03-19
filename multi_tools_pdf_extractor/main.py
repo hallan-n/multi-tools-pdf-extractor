@@ -1,14 +1,8 @@
-import asyncio
-from infrastructure.repositories.config.connection import Connection
-from dotenv import load_dotenv
+from fastapi import FastAPI
+from multi_tools_pdf_extractor.infrastructure.api.routes.ticket_router import (
+    router as ticket_router,
+)
 
-load_dotenv()
+app = FastAPI()
 
-
-async def teste():
-    async with Connection() as conn:
-        ...
-
-
-loop = asyncio.get_event_loop()
-loop.run_until_complete(teste())
+app.include_router(ticket_router)

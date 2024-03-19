@@ -28,5 +28,4 @@ class Connection:
         return self.async_session()
 
     async def __aexit__(self, exc_type, exc_value, traceback):
-        print("Saiu")
         await self.async_session().close()

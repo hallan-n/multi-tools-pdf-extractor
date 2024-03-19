@@ -3,10 +3,10 @@ from datetime import date
 
 
 class Ticket(BaseModel):
-    id: int
-    open_date: date
-    resolution_date: date
-    owner: str
-    status: str
-    comments: str
-    templates: list[str] | str
+    id: int = None
+    open_date: date = None
+    resolution_date: date = None
+    owner: str = None
+    status: str = None
+    comments: str = None
+    templates: list[str] | str = None
