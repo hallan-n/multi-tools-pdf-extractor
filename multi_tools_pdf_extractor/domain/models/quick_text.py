@@ -1,7 +1,7 @@
 from pydantic import BaseModel
-from .group import Group
+from multi_tools_pdf_extractor.domain.models.group import Group
 
 
 class QuickText(BaseModel):
-    text: str
-    group: Group
+    text: str = None
+    group: Group = None

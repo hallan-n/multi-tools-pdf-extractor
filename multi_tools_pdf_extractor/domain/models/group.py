@@ -1,5 +1,5 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 
 class Group(BaseModel):
-    group: str = Field(min_length=3, max_length=200)
+    group: str = None
