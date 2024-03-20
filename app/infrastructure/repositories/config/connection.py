@@ -1,12 +1,12 @@
 import os
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
-from multi_tools_pdf_extractor.infrastructure.schemas.base import Base
-from multi_tools_pdf_extractor.infrastructure.schemas.group_schema import Group
-from multi_tools_pdf_extractor.infrastructure.schemas.pdf_schema import PDF
-from multi_tools_pdf_extractor.infrastructure.schemas.quick_text_schema import QuickText
-from multi_tools_pdf_extractor.infrastructure.schemas.ticket_schema import Ticket
-from multi_tools_pdf_extractor.infrastructure.schemas.template_schema import Template
+from app.infrastructure.schemas.base import Base
+from app.infrastructure.schemas.group_schema import Group
+from app.infrastructure.schemas.pdf_schema import PDF
+from app.infrastructure.schemas.quick_text_schema import QuickText
+from app.infrastructure.schemas.ticket_schema import Ticket
+from app.infrastructure.schemas.template_schema import Template
 
 
 class Connection:

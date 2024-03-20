@@ -1,5 +1,5 @@
 import pytest
-from multi_tools_pdf_extractor.infrastructure.repositories.config.connection import (
+from app.infrastructure.repositories.config.connection import (
     Connection,
 )
 

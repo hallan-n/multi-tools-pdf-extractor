@@ -1,10 +1,6 @@
-from multi_tools_pdf_extractor.infrastructure.repositories.interfaces.persistence import (
-    Persistence,
-)
-from multi_tools_pdf_extractor.infrastructure.repositories.config.connection import (
-    Connection,
-)
-from multi_tools_pdf_extractor.infrastructure.schemas.ticket_schema import Ticket
+from app.infrastructure.repositories.interfaces.persistence import Persistence
+from app.infrastructure.repositories.config.connection import Connection
+from app.infrastructure.schemas.ticket_schema import Ticket
 
 
 class TicketRepository(Persistence):
