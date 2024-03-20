@@ -1,6 +1,18 @@
+from fastapi import UploadFile
+
+import base64
+
+
 class PDFUseCase:
-    def to_base64(self):
-        ...
+    async def to_base64(self, file: UploadFile):
+        if not file.filename.endswith(".pdf"):
+            return False
+        try:
+            contents = await file.read()
+            encoded_pdf = base64.b64encode(contents).decode("utf-8")
+            return encoded_pdf
+        except Exception as e:
+            raise e
 
     def renamePdfs(self):
         ...
