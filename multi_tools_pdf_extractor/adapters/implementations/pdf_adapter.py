@@ -4,14 +4,18 @@ from multi_tools_pdf_extractor.infrastructure.schemas.pdf_schema import PDF as S
 
 
 class PDFAdapter(DataParser):
-    def __init__(self, model: Model, schema: Schema) -> None:
-        self.model = model
-        self.schema = schema
+    def __init__(self, pdf: Model | Schema) -> None:
+        self.pdf = pdf
 
     def to_schema(self):
-        fields = {}
-        for prop in self.model:
-            print(prop)
+        try:
+            data = dict(self.pdf)
+            return Schema(**data)
+        except Exception as e:
+            raise e
 
     def to_model(self):
-        pass
+        pdf = {}
+
+        ticket = vars(vars(self.pdf).get("ticket"))
+        return ticket

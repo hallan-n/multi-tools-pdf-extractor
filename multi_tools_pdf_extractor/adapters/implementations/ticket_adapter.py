@@ -14,7 +14,7 @@ class TicketAdapter(DataParser):
             data = dict(self.ticket)
             return Schema(**data)
         except Exception as e:
-            raise e("Erro ao fazer cast")
+            raise e("Erro ao fazer cast de Model para Schema")
 
     def to_model(self):
         pass

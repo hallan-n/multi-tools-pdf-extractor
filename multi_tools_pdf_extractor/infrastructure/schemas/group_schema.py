@@ -9,5 +9,5 @@ class Group(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     group = Column(String(200))
 
-    tickets = relationship("Ticket", back_populates="group_id")
-    quick_texts = relationship("QuickText", back_populates="group_id")
+    tickets = relationship("Ticket", back_populates="group")
+    quick_texts = relationship("QuickText", back_populates="group")

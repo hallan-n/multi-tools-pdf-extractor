@@ -14,8 +14,8 @@ class Ticket(Base):
     status = Column(String(200))
     comments = Column(String(200))
 
-    templates = relationship("Template", back_populates="ticket_id")
-    pdfs = relationship("PDF", back_populates="ticket_id")
+    pdfs = relationship("PDF", back_populates="ticket")
+    templates = relationship("Template", back_populates="ticket")
 
     group_id = Column(Integer, ForeignKey("group.id"))
     group = relationship("Group", back_populates="tickets")
