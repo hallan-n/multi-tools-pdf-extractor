@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from app.domain.models.ticket import Ticket
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -6,6 +7,6 @@ load_dotenv()
 app = FastAPI()
 
 
-@app.get("/")
-async def inserir():
+@app.post("/")
+async def inserir(quick_text: Ticket):
     return "asd"

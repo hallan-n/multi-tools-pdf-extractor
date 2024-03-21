@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from datetime import date
-from domain.models.group import Group
-from domain.models.template import Template
+from app.domain.models.group import Group
+from app.domain.models.template import Template
 
 
 class Ticket(BaseModel):

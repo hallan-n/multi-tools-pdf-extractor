@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from domain.models.group import Group
+from app.domain.models.group import Group
 
 
 class QuickText(BaseModel):

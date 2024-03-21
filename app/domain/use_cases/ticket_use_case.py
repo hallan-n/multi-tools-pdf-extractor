@@ -10,7 +10,7 @@ class TicketUseCase:
         self.repository = TicketRepository()
 
     def list_tickets(self):
-        print(self.repository.read())
+        ...
 
     def add_ticket(self, ticket: Ticket):
         ...
