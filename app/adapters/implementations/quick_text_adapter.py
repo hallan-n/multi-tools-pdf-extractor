@@ -1,6 +1,6 @@
-from app.adapters.interfaces.data_parser import DataParser
-from app.domain.models.quick_text import QuickText as Model
-from app.infrastructure.schemas.quick_text_schema import (
+from adapters.interfaces.data_parser import DataParser
+from domain.models.quick_text import QuickText as Model
+from infrastructure.schemas.quick_text_schema import (
     QuickText as Schema,
 )
 

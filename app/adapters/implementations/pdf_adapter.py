@@ -1,6 +1,6 @@
-from app.adapters.interfaces.data_parser import DataParser
-from app.domain.models.pdf import PDF as Model
-from app.infrastructure.schemas.pdf_schema import PDF as Schema
+from adapters.interfaces.data_parser import DataParser
+from domain.models.pdf import PDF as Model
+from infrastructure.schemas.pdf_schema import PDF as Schema
 
 
 class PDFAdapter(DataParser):

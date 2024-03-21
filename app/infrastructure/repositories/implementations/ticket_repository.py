@@ -1,6 +1,6 @@
-from app.infrastructure.repositories.interfaces.persistence import Persistence
-from app.infrastructure.repositories.config.connection import Connection
-from app.infrastructure.schemas.ticket_schema import Ticket
+from infrastructure.repositories.interfaces.persistence import Persistence
+from infrastructure.repositories.config.connection import Connection
+from infrastructure.schemas.ticket_schema import Ticket
 
 
 class TicketRepository(Persistence):

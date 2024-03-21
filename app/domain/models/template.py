@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from app.domain.models.group import Group
+from domain.models.group import Group
 
 
 class Template(BaseModel):

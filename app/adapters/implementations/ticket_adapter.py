@@ -1,6 +1,6 @@
-from app.adapters.interfaces.data_parser import DataParser
-from app.domain.models.ticket import Ticket as Model
-from app.infrastructure.schemas.ticket_schema import (
+from adapters.interfaces.data_parser import DataParser
+from domain.models.ticket import Ticket as Model
+from infrastructure.schemas.ticket_schema import (
     Ticket as Schema,
 )
 

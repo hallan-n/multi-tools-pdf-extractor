@@ -1,19 +1,19 @@
-from ..interfaces.persistence import Persistence
-from ..config.connection import Connection
+from infrastructure.repositories.interfaces.persistence import Persistence
+from infrastructure.repositories.config.connection import Connection
 
 
 class TemplateRepository(Persistence):
     def __init__(self):
         self.connection = Connection()
 
-    def create(self):
+    async def create(self):
         pass
 
-    def read(self):
+    async def read(self):
         pass
 
-    def update(self):
+    async def update(self):
         pass
 
-    def delete(self):
+    async def delete(self):
         pass

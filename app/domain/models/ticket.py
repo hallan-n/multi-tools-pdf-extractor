@@ -1,8 +1,8 @@
 from pydantic import BaseModel
 from datetime import date
-from app.domain.models.group import Group
-from app.domain.models.template import Template
-from app.domain.models.pdf import PDF
+from domain.models.group import Group
+from domain.models.template import Template
+from domain.models.pdf import PDF
 
 
 class Ticket(BaseModel):
