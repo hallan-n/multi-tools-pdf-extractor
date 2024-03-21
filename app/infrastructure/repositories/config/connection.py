@@ -3,7 +3,6 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 from app.infrastructure.schemas.base import Base
 from app.infrastructure.schemas.group_schema import Group
-from app.infrastructure.schemas.pdf_schema import PDF
 from app.infrastructure.schemas.quick_text_schema import QuickText
 from app.infrastructure.schemas.ticket_schema import Ticket
 from app.infrastructure.schemas.template_schema import Template

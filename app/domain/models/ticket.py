@@ -2,7 +2,6 @@ from pydantic import BaseModel
 from datetime import date
 from domain.models.group import Group
 from domain.models.template import Template
-from domain.models.pdf import PDF
 
 
 class Ticket(BaseModel):
@@ -13,5 +12,4 @@ class Ticket(BaseModel):
     status: str = None
     comments: str = None
     templates: list[Template] = None
-    pdfs: list[PDF] = None
     group: Group = None
