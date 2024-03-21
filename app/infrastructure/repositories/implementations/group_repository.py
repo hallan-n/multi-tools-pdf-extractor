@@ -1,13 +1,14 @@
 from app.infrastructure.repositories.interfaces.persistence import Persistence
 from app.infrastructure.repositories.config.connection import Connection
 from app.infrastructure.schemas.group_schema import Group
+from sqlalchemy import select
 
 
 class GroupRepository(Persistence):
     def __init__(self):
         self.connection = Connection()
 
-    async def create(self, group: Group):
+    async def create(self, group: Group) -> None:
         """Cria um novo Grupo."""
         try:
             async with self.connection as conn:
@@ -16,9 +17,7 @@ class GroupRepository(Persistence):
         except Exception as e:
             raise RuntimeError(f"Erro ao criar o group: {e}")
 
-    async def read(self):
-        from sqlalchemy import select
-
+    async def read(self) -> list[Group]:
         """Lê todos os groups."""
         try:
             async with self.connection as conn:

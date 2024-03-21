@@ -1,6 +1,7 @@
 from infrastructure.repositories.interfaces.persistence import Persistence
 from infrastructure.repositories.config.connection import Connection
 from infrastructure.schemas.ticket_schema import Ticket
+from sqlalchemy import select
 
 
 class TicketRepository(Persistence):
@@ -16,11 +17,12 @@ class TicketRepository(Persistence):
         except Exception as e:
             raise RuntimeError(f"Erro ao criar o ticket: {e}")
 
-    async def read(self):
+    async def read(self) -> list[Ticket]:
         """Lê todos os tickets."""
         try:
             async with self.connection as conn:
-                tickets = await conn.execute(conn.query(Ticket))
+                query = select(Ticket)
+                tickets = await conn.execute(query)
                 return tickets.fetchall()
         except Exception as e:
             raise RuntimeError(f"Erro ao ler os tickets: {e}")
@@ -31,10 +33,10 @@ class TicketRepository(Persistence):
             async with self.connection as conn:
                 ticket = await conn.get(Ticket, ticket_new.id)
                 if ticket:
-                    ticket = conn.merge(ticket_new)
+                    ticket = await conn.merge(ticket_new)
                     await conn.commit()
                 else:
-                    raise ValueError("Ticket não encontrado")
+                    raise ValueError("ticket não encontrado")
         except Exception as e:
             raise RuntimeError(f"Erro ao atualizar o ticket: {e}")
 
@@ -44,9 +46,9 @@ class TicketRepository(Persistence):
             async with self.connection as conn:
                 ticket = await conn.get(Ticket, ticket_del.id)
                 if ticket:
-                    conn.delete(ticket)
+                    await conn.delete(ticket)
                     await conn.commit()
                 else:
-                    raise ValueError("Ticket não encontrado")
+                    raise ValueError("ticket não encontrado")
         except Exception as e:
             raise RuntimeError(f"Erro ao excluir o ticket: {e}")
