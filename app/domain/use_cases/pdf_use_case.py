@@ -1,10 +1,10 @@
-from fastapi import UploadFile
+from fastapi import UploadFile, File
 
 import base64
 
 
 class PDFUseCase:
-    async def to_base64(self, file: UploadFile):
+    async def to_base64(self, file: UploadFile = File(...)):
         if not file.filename.endswith(".pdf"):
             return False
         try:
