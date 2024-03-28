@@ -8,26 +8,38 @@
 <body>
     <input type="file" id="fileInput" multiple>
     <button onclick="sendFiles()">Enviar Arquivos</button>
+    <div id="download-links"></div>
 
     <script>
-        function sendFiles() {
+        async function sendFiles() {
             const fileInput = document.getElementById('fileInput');
             const files = fileInput.files;
             const formData = new FormData();
 
-            for (let i = 0; i < files.length; i++) {
-                formData.append('files', files[i]);
+            for (const file of files) {
+                formData.append('files', file);
             }
-          
    
             
-            fetch('http://localhost:8000/pdf/rename', {
+            let response = await fetch('http://localhost:8001/pdf/rename', {
                 method: 'POST',
                 body: formData
             })
-            .then(response => {
-                console.log(response.json()); 
-            })
+
+            const data = await response.json()
+            const downloadLinksContainer = document.getElementById('download-links');
+
+            data.forEach((file) => {
+                const link = document.createElement('a');
+                link.href = `data:application/pdf;base64,${file.base64_content}`;
+                link.download = file.filename;
+                link.textContent = file.filename
+                
+                const br = document.createElement('br');
+                
+                downloadLinksContainer.appendChild(link);
+                downloadLinksContainer.appendChild(br);
+            });
         }
     </script>
 </body>

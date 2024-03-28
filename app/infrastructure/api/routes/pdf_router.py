@@ -19,17 +19,16 @@ async def to_base64(files: list[UploadFile] = File(...)):
 
 @router.post("/pdf/rename")
 async def to_base64(filename="file-", files: list[UploadFile] = File(...)):
-    for file in files:
-        if not file.filename.lower().endswith(".pdf"):
-            files.remove(file)
-
+    renamed_files = []
     for index, file in enumerate(files, start=1):
-        enum = str(index)
-        if index <= 9:
-            enum = f"0{index}"
-        files[index - 1].filename = filename + enum
-
-    return files
+        enum = str(index).zfill(2)
+        new_filename = f"{filename}{enum}.pdf"
+        content = await file.read()
+        base64_content = base64.b64encode(content).decode("utf-8")
+        renamed_files.append(
+            {"filename": new_filename, "base64_content": base64_content}
+        )
+    return renamed_files
 
 
 @router.post("/pdf")
