@@ -5,13 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enviar Arquivos para API</title>
 </head>
+
 <body>
-    <input type="file" id="fileInput" multiple>
-    <button onclick="sendFiles()">Enviar Arquivos</button>
-    <div id="download-links"></div>
+    <main style="display: flex;">
+
+        <fieldset>
+            <legend>Get Metadata</legend>
+            <input type="file" id="fileInput" multiple>
+            <button onclick="getMetadata()">Enviar Arquivos</button>
+            <div id="download-links"></div>
+        </fieldset>
+        <fieldset>
+            <legend>To Base 64</legend>
+            <input type="file" id="fileInput" multiple>
+            <button onclick="toBase64()">Enviar Arquivos</button>
+            <div id="download-links"></div>
+        </fieldset> 
+        <fieldset>
+            <legend>Renomear PDFs</legend>
+            <input type="file" id="fileInput" multiple>
+            <button onclick="renameFiles()">Enviar Arquivos</button>
+            <div id="download-links"></div>
+        </fieldset>
+        <fieldset>
+            <legend>Quebrar senha</legend>
+            <input type="file" id="fileInput" multiple>
+            <button onclick="crackPass()">Enviar Arquivos</button>
+            <div id="download-links"></div>
+        </fieldset>
+    </main>
 
     <script>
-        async function sendFiles() {
+
+
+        async function getMetadata() {
             const fileInput = document.getElementById('fileInput');
             const files = fileInput.files;
             const formData = new FormData();
@@ -21,7 +48,91 @@
             }
    
             
-            let response = await fetch('http://localhost:8001/pdf/rename', {
+            let response = await fetch('http://localhost:8006/pdf/meta', {
+                method: 'POST',
+                body: formData
+            })
+
+            const data = await response.json()
+            console.log(data);
+            const downloadLinksContainer = document.getElementById('download-links');
+            const title = document.createElement('p')
+            title.textContent = `title: ${data.title}`
+            const creator = document.createElement('p')
+            creator.textContent = `creator: ${data.creator}`
+            const producer = document.createElement('p')
+            producer.textContent = `producer: ${data.producer}`
+            const createDate = document.createElement('p')
+            createDate.textContent = `createDate: ${data.creation_date}`
+            const modDate = document.createElement('p')
+            modDate.textContent = `modDate: ${data.modification_date}`
+            const author = document.createElement('p')
+            modDate.textContent = `modDate: ${data.author}`
+            
+            downloadLinksContainer.appendChild(title)
+            downloadLinksContainer.appendChild(creator)
+            downloadLinksContainer.appendChild(producer)
+            downloadLinksContainer.appendChild(createDate)
+            downloadLinksContainer.appendChild(modDate)
+            // {
+            //     /Title: 'Revisar envio do teste: Clique aqui para iniciar o Quiz &ndash...',
+            //     /Creator: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWeb…KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
+            //     /Producer: 'Skia/PDF m123',
+            //     /CreationDate: "D:20240327235550+00'00'",
+            //     /ModDate: "D:20240327235550+00'00'"
+            // }
+        }
+
+
+
+
+        async function toBase64() {
+            const fileInput = document.getElementById('fileInput');
+            const files = fileInput.files;
+            const formData = new FormData();
+
+            for (const file of files) {
+                formData.append('files', file);
+            }
+   
+            
+            let response = await fetch('http://localhost:8006/pdf/base64', {
+                method: 'POST',
+                body: formData
+            })
+
+            const data = await response.json()
+            console.log(data);
+            const downloadLinksContainer = document.getElementById('download-links');
+            data.forEach((file) => {
+                const div = document.createElement('div');
+                div.style.maxWidth = '300px'
+                const p = document.createElement('p');
+                p.textContent = file.filename
+                div.appendChild(p)
+                const br = document.createElement('br');
+                div.appendChild(br)
+                const p2 = document.createElement('p');
+                p2.style.overflow = 'hidden'
+                p2.textContent = file.base64
+                div.appendChild(p2)
+                downloadLinksContainer.appendChild(div)
+            });
+        }
+
+
+
+        async function renameFiles() {
+            const fileInput = document.getElementById('fileInput');
+            const files = fileInput.files;
+            const formData = new FormData();
+
+            for (const file of files) {
+                formData.append('files', file);
+            }
+   
+            
+            let response = await fetch('http://localhost:8004/pdf/rename', {
                 method: 'POST',
                 body: formData
             })
@@ -42,6 +153,39 @@
                 link.click()
             });
         }
+
+        async function crackPass(){
+            const fileInput = document.getElementById('fileInput');
+            const files = fileInput.files;
+            const formData = new FormData();
+
+            for (const file of files) {
+                formData.append('files', file);
+            }
+   
+            
+            let response = await fetch('http://localhost:8004/pdf/pass', {
+                method: 'POST',
+                body: formData
+            })
+
+            const data = await response.json()
+            const downloadLinksContainer = document.getElementById('download-links');
+
+            data.forEach((file) => {
+                const link = document.createElement('a');
+                link.href = `data:application/pdf;base64,${file.base64_content}`;
+                link.download = file.filename;
+                link.textContent = file.filename
+                
+                const br = document.createElement('br');
+                
+                downloadLinksContainer.appendChild(link);
+                downloadLinksContainer.appendChild(br);
+                link.click()
+            });
+        }
+
     </script>
 </body>
 </html>
