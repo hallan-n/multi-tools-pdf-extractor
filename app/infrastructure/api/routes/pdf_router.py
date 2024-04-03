@@ -79,15 +79,17 @@ async def crack_pass(files: list[UploadFile] = File(...), password: str = "999")
 
 @router.post("/pdf/meta")
 async def get_metadatas(files: list[UploadFile] = File(...)):
-    pdf_reader = PdfReader(files[0].file)
-
-    meta = {
-        "title": pdf_reader.metadata.title,
-        "author": pdf_reader.metadata.author,
-        "creator": pdf_reader.metadata.creator,
-        "producer": pdf_reader.metadata.producer,
-        "creation_date": pdf_reader.metadata.creation_date,
-        "modification_date": pdf_reader.metadata.modification_date,
-    }
-
-    return meta
+    meta_list = []
+    for file in files:
+        pdf_reader = PdfReader(file)
+        meta = {
+            "filename": file.filename,
+            "title": pdf_reader.metadata.title,
+            "author": pdf_reader.metadata.author,
+            "creator": pdf_reader.metadata.creator,
+            "producer": pdf_reader.metadata.producer,
+            "creation_date": pdf_reader.metadata.creation_date,
+            "modification_date": pdf_reader.metadata.modification_date,
+        }
+        meta_list.append(meta)
+    return meta_list
