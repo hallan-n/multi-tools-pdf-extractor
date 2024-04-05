@@ -6,13 +6,13 @@ from infrastructure.schemas.ticket_schema import (
 
 
 class TicketAdapter(DataParser):
-    def __init__(self, pdf: Model | Schema) -> None:
-        self.pdf = pdf
+    def __init__(self, ticket: Model | Schema) -> None:
+        self.ticket = ticket
 
     def to_schema(self):
         try:
-            data = dict(self.pdf)
-            return Schema(**data)
+            data = self.ticket.model_dump()
+            print(data)
         except Exception as e:
             raise e
 

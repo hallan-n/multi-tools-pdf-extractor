@@ -17,5 +17,7 @@ app.add_middleware(
 )
 
 from app.infrastructure.api.routes.pdf_router import router as pdf
+from app.infrastructure.api.routes.quick_text_router import route as text
 
 app.include_router(pdf)
+app.include_router(text)
