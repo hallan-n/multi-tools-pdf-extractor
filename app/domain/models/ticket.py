@@ -12,6 +12,8 @@ class Ticket(BaseModel):
     status: str = None
     comments: str = None
     is_sla: bool = None
-    brokerage: Brokerage = None
     templates: list[Template] = None
     group: list[Group] = None
+
+    class Config:
+        orm_mode = True
