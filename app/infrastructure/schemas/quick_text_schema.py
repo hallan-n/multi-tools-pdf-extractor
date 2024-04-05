@@ -9,5 +9,4 @@ class QuickText(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     text = Column(String(200))
 
-    group_id = Column(Integer, ForeignKey("group.id"))
-    group = relationship("Group", back_populates="quick_texts")
+    groups = relationship("Group", back_populates="quick_text")

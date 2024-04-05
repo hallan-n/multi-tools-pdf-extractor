@@ -17,27 +17,27 @@
         </fieldset>
         <fieldset>
             <legend>To Base 64</legend>
-            <input type="file" id="fileInput" multiple>
+            <input type="file" id="fileInput1" multiple>
             <button onclick="toBase64()">Enviar Arquivos</button>
-            <div id="download-links"></div>
+            <div id="download-links1"></div>
         </fieldset> 
+        
         <fieldset>
             <legend>Renomear PDFs</legend>
-            <input type="file" id="fileInput" multiple>
+            <input type="file" id="fileInput2" multiple>
             <button onclick="renameFiles()">Enviar Arquivos</button>
-            <div id="download-links"></div>
+            <div id="download-links2"></div> 
         </fieldset>
-        <fieldset>
+
+        <fieldset> 
             <legend>Quebrar senha</legend>
-            <input type="file" id="fileInput" multiple>
+            <input type="file" id="fileInput3" multiple>
             <button onclick="crackPass()">Enviar Arquivos</button>
-            <div id="download-links"></div>
+            <div id="download-links3"></div>
         </fieldset>
     </main>
-
     <script>
-
-
+        
         async function getMetadata() {
             const fileInput = document.getElementById('fileInput');
             const files = fileInput.files;
@@ -46,64 +46,49 @@
             for (const file of files) {
                 formData.append('files', file);
             }
-   
+
             
-            let response = await fetch('http://localhost:8006/pdf/meta', {
+            let response = await fetch('http://localhost:8000/pdf/meta', {
                 method: 'POST',
                 body: formData
             })
 
-            const data = await response.json()
-            console.log(data);
             const downloadLinksContainer = document.getElementById('download-links');
-            const title = document.createElement('p')
-            title.textContent = `title: ${data.title}`
-            const creator = document.createElement('p')
-            creator.textContent = `creator: ${data.creator}`
-            const producer = document.createElement('p')
-            producer.textContent = `producer: ${data.producer}`
-            const createDate = document.createElement('p')
-            createDate.textContent = `createDate: ${data.creation_date}`
-            const modDate = document.createElement('p')
-            modDate.textContent = `modDate: ${data.modification_date}`
-            const author = document.createElement('p')
-            modDate.textContent = `modDate: ${data.author}`
-            
-            downloadLinksContainer.appendChild(title)
-            downloadLinksContainer.appendChild(creator)
-            downloadLinksContainer.appendChild(producer)
-            downloadLinksContainer.appendChild(createDate)
-            downloadLinksContainer.appendChild(modDate)
-            // {
-            //     /Title: 'Revisar envio do teste: Clique aqui para iniciar o Quiz &ndash...',
-            //     /Creator: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWeb…KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
-            //     /Producer: 'Skia/PDF m123',
-            //     /CreationDate: "D:20240327235550+00'00'",
-            //     /ModDate: "D:20240327235550+00'00'"
-            // }
+            const metadata = await response.json()
+
+            metadata.forEach(item => {
+                const vars = Object.keys(item)
+                vars.forEach(v => {
+                    let p = document.createElement('p')
+                    p.textContent = `${v}: ${item[v]}`
+                    downloadLinksContainer.appendChild(p)
+                    
+                })                
+                downloadLinksContainer.appendChild(document.createElement('hr'))
+            })            
         }
 
 
 
 
         async function toBase64() {
-            const fileInput = document.getElementById('fileInput');
+            const fileInput = document.getElementById('fileInput1');
             const files = fileInput.files;
             const formData = new FormData();
 
             for (const file of files) {
                 formData.append('files', file);
             }
-   
+
             
-            let response = await fetch('http://localhost:8006/pdf/base64', {
+            let response = await fetch('http://localhost:8000/pdf/base64', {
                 method: 'POST',
                 body: formData
             })
 
             const data = await response.json()
             console.log(data);
-            const downloadLinksContainer = document.getElementById('download-links');
+            const downloadLinksContainer = document.getElementById('download-links1');
             data.forEach((file) => {
                 const div = document.createElement('div');
                 div.style.maxWidth = '300px'
@@ -123,22 +108,22 @@
 
 
         async function renameFiles() {
-            const fileInput = document.getElementById('fileInput');
+            const fileInput = document.getElementById('fileInput2');
             const files = fileInput.files;
             const formData = new FormData();
 
             for (const file of files) {
                 formData.append('files', file);
             }
-   
+
             
-            let response = await fetch('http://localhost:8004/pdf/rename', {
+            let response = await fetch('http://localhost:8000/pdf/rename', {
                 method: 'POST',
                 body: formData
             })
 
             const data = await response.json()
-            const downloadLinksContainer = document.getElementById('download-links');
+            const downloadLinksContainer = document.getElementById('download-links2');
 
             data.forEach((file) => {
                 const link = document.createElement('a');
@@ -155,22 +140,22 @@
         }
 
         async function crackPass(){
-            const fileInput = document.getElementById('fileInput');
+            const fileInput = document.getElementById('fileInput3');
             const files = fileInput.files;
             const formData = new FormData();
 
             for (const file of files) {
                 formData.append('files', file);
             }
-   
+
             
-            let response = await fetch('http://localhost:8004/pdf/pass', {
+            let response = await fetch('http://localhost:8000/pdf/pass', {
                 method: 'POST',
                 body: formData
             })
 
             const data = await response.json()
-            const downloadLinksContainer = document.getElementById('download-links');
+            const downloadLinksContainer = document.getElementById('download-links3');
 
             data.forEach((file) => {
                 const link = document.createElement('a');
@@ -185,7 +170,6 @@
                 link.click()
             });
         }
-
     </script>
 </body>
 </html>

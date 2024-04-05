@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
 from .base import Base
@@ -13,8 +13,8 @@ class Ticket(Base):
     owner = Column(String(200))
     status = Column(String(200))
     comments = Column(String(200))
+    is_sla = Column(Boolean, default=False)
 
     templates = relationship("Template", back_populates="ticket")
-
-    group_id = Column(Integer, ForeignKey("group.id"))
-    group = relationship("Group", back_populates="tickets")
+    groups = relationship("Group", back_populates="ticket")
+    brokerage = relationship("Brokerage", uselist=False, back_populates="ticket")
