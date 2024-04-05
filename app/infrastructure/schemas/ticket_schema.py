@@ -10,7 +10,6 @@ class Ticket(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     open_date = Column(DateTime)
     resolution_date = Column(DateTime)
-    owner = Column(String(200))
     status = Column(String(200))
     comments = Column(String(200))
     is_sla = Column(Boolean, default=False)
