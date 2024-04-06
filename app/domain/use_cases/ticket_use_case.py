@@ -1,8 +1,7 @@
 from domain.models.group import Group
 from domain.models.ticket import Ticket
-from infrastructure.repositories.implementations.ticket_repository import (
-    TicketRepository,
-)
+from infrastructure.repositories.implementations.ticket_repository import \
+    TicketRepository
 
 
 class TicketUseCase:

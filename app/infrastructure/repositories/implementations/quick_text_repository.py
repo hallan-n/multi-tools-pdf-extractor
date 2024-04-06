@@ -1,7 +1,8 @@
-from infrastructure.repositories.interfaces.persistence import Persistence
-from infrastructure.repositories.config.connection import Connection
-from app.infrastructure.schemas.quick_text_schema import QuickText
 from sqlalchemy import select
+
+from app.infrastructure.repositories.config.connection import Connection
+from app.infrastructure.repositories.interfaces.persistence import Persistence
+from app.infrastructure.schemas.quick_text_schema import QuickText
 
 
 class QuickTextRepository(Persistence):

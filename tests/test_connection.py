@@ -1,7 +1,6 @@
 import pytest
-from app.infrastructure.repositories.config.connection import (
-    Connection,
-)
+
+from app.infrastructure.repositories.config.connection import Connection
 
 
 @pytest.fixture

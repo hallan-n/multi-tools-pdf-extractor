@@ -1,6 +1,7 @@
 from fastapi import APIRouter
-from app.domain.models.ticket import Ticket
+
 from app.domain.models.group import Group
+from app.domain.models.ticket import Ticket
 
 route = APIRouter()
 

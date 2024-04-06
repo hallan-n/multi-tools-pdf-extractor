@@ -1,5 +1,5 @@
-from app.domain.models.quick_text import QuickText
 from app.domain.models.group import Group
+from app.domain.models.quick_text import QuickText
 
 
 class QuickTextUseCase:

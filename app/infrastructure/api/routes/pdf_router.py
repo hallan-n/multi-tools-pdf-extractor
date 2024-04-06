@@ -1,4 +1,5 @@
-from fastapi import APIRouter, UploadFile, File
+from fastapi import APIRouter, File, UploadFile
+
 from app.domain.use_cases.pdf_use_case import PDFUseCase
 
 router = APIRouter(tags=["PDF"])

@@ -1,6 +1,7 @@
 import base64
 from io import BytesIO
-from fastapi import UploadFile, File
+
+from fastapi import File, UploadFile
 from fastapi.exceptions import HTTPException
 from PyPDF2 import PdfReader, PdfWriter
 

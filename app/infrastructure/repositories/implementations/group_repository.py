@@ -1,7 +1,8 @@
-from app.infrastructure.repositories.interfaces.persistence import Persistence
-from app.infrastructure.repositories.config.connection import Connection
-from app.infrastructure.schemas.group_schema import Group
 from sqlalchemy import select
+
+from app.infrastructure.repositories.config.connection import Connection
+from app.infrastructure.repositories.interfaces.persistence import Persistence
+from app.infrastructure.schemas.group_schema import Group
 
 
 class GroupRepository(Persistence):
