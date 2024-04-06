@@ -13,8 +13,8 @@ class QuickTextAdapter(DataParser):
         self.text = text
 
     def to_schema(self):
-        if isinstance(self.template, Schema):
-            return self.template
+        if isinstance(self.text, Schema):
+            return self.text
         try:
             data = self.text.model_dump()
             return Schema(**data)

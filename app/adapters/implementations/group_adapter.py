@@ -12,8 +12,8 @@ class GroupAdapter(DataParser):
         self.group = group
 
     def to_schema(self):
-        if isinstance(self.template, Schema):
-            return self.template
+        if isinstance(self.group, Schema):
+            return self.group
         try:
             data = self.group.model_dump()
             return Schema(**data)
