@@ -1,5 +1,4 @@
 from app.adapters.implementations.ticket_adapter import TicketAdapter
-from app.domain.models.group import Group
 from app.domain.models.ticket import Ticket
 from app.infrastructure.repositories.implementations.ticket_repository import \
     TicketRepository
