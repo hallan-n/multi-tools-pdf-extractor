@@ -41,11 +41,11 @@ class GroupRepository(Persistence):
         except Exception as e:
             raise RuntimeError(f"Erro ao atualizar o group: {e}")
 
-    async def delete(self, group_del: Group) -> None:
+    async def delete(self, id: int) -> None:
         """Exclui um group."""
         try:
             async with self.connection as conn:
-                group = await conn.get(Group, group_del.id)
+                group = await conn.get(Group, id)
                 if group:
                     await conn.delete(group)
                     await conn.commit()

@@ -26,7 +26,7 @@ async def update_text(quick_text: QuickText):
     return {"sucess": resp}
 
 
-@route.delete("/quicktext/{id}")
+@route.delete("/quicktext")
 async def delete_text(id: int):
     resp = await use_case.delete_text(id)
     return {"sucess": resp}

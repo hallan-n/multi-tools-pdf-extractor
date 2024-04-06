@@ -41,11 +41,11 @@ class TemplateRepository(Persistence):
         except Exception as e:
             raise RuntimeError(f"Erro ao atualizar o template: {e}")
 
-    async def delete(self, template_del: Template) -> None:
+    async def delete(self, id: int) -> None:
         """Exclui um template."""
         try:
             async with self.connection as conn:
-                template = await conn.get(Template, template_del.id)
+                template = await conn.get(Template, id)
                 if template:
                     await conn.delete(template)
                     await conn.commit()
