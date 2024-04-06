@@ -6,8 +6,6 @@ load_dotenv()
 
 app = FastAPI()
 
-
-# Configure o middleware CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -18,6 +16,8 @@ app.add_middleware(
 
 from app.infrastructure.api.routes.pdf_router import router as pdf
 from app.infrastructure.api.routes.quick_text_router import route as text
+from app.infrastructure.api.routes.ticket_router import route as ticket
 
 app.include_router(pdf)
 app.include_router(text)
+app.include_router(ticket)

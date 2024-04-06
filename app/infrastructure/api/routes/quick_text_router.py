@@ -3,7 +3,7 @@ from fastapi import APIRouter
 from app.domain.models.quick_text import QuickText
 from app.domain.use_cases.quick_text_use_case import QuickTextUseCase
 
-route = APIRouter()
+route = APIRouter(tags=["Quick texts"])
 
 use_case = QuickTextUseCase()
 

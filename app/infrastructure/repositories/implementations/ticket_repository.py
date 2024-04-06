@@ -41,11 +41,11 @@ class TicketRepository(Persistence):
         except Exception as e:
             raise RuntimeError(f"Erro ao atualizar o ticket: {e}")
 
-    async def delete(self, ticket_del: Ticket) -> None:
+    async def delete(self, ticket_id: int) -> None:
         """Exclui um ticket."""
         try:
             async with self.connection as conn:
-                ticket = await conn.get(Ticket, ticket_del.id)
+                ticket = await conn.get(Ticket, ticket_id)
                 if ticket:
                     await conn.delete(ticket)
                     await conn.commit()
