@@ -2,7 +2,6 @@ from app.adapters.interfaces.data_parser import DataParser
 from app.domain.models.quick_text import QuickText as Model
 from app.infrastructure.schemas.brokerage_schema import Brokerage
 from app.infrastructure.schemas.group_schema import Group
-from app.infrastructure.schemas.group_schema import Group as GroupSchema
 from app.infrastructure.schemas.quick_text_schema import QuickText as Schema
 from app.infrastructure.schemas.template_schema import Template
 from app.infrastructure.schemas.ticket_schema import Ticket

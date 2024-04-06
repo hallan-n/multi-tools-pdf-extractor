@@ -41,11 +41,11 @@ class QuickTextRepository(Persistence):
         except Exception as e:
             raise RuntimeError(f"Erro ao atualizar o quick_text: {e}")
 
-    async def delete(self, quick_text_del: QuickText) -> None:
+    async def delete(self, id: int) -> None:
         """Exclui um QuickText."""
         try:
             async with self.connection as conn:
-                quick_text = await conn.get(QuickText, quick_text_del.id)
+                quick_text = await conn.get(QuickText, id)
                 if quick_text:
                     await conn.delete(quick_text)
                     await conn.commit()
