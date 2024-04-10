@@ -11,6 +11,8 @@ class Ticket(Base):
     open_date = Column(DateTime)
     resolution_date = Column(DateTime)
     status = Column(String(200))
+    title = Column(String(200))
+    url = Column(String(200))
     comments = Column(String(200))
     is_sla = Column(Boolean, default=False)
 

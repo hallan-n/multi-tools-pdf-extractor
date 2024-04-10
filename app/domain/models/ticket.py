@@ -8,5 +8,7 @@ class Ticket(BaseModel):
     open_date: datetime = None
     resolution_date: datetime = None
     status: str = None
+    title: str = None
+    url: str = None
     comments: str = None
     is_sla: bool = None
